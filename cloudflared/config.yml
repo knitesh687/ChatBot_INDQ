@@ -1,8 +1,14 @@
 tunnel: n8n-chatbot
 credentials-file: /etc/cloudflared/bbfaa4fe-b8fe-4fd7-8b39-4dd9b70c35e2.json
 
+# ingress:
+#   - hostname: indqchatbot.zmake.in
+#     service: http://localhost:5678/webhook/69c9ffd9-a03b-4aa5-84b7-80688c58fc83/chat
+
+#   - service: http_status:404
+
 ingress:
   - hostname: indqchatbot.zmake.in
-    service: http://localhost:5678/webhook/69c9ffd9-a03b-4aa5-84b7-80688c58fc83/chat
+    service: http://n8n:5678   # no paths allowed here
     
   - service: http_status:404

@@ -1,0 +1,2 @@
+{"__type":"$$EventMessageAudit","id":"e4a2b34a-5a12-4310-8305-fd9d474a35d5","ts":"2025-06-25T11:31:21.751+00:00","eventName":"n8n.audit.user.login.success","message":"n8n.audit.user.login.success","payload":{"userId":"9c7c4de7-876d-4a0b-afb9-f398e7b4e365","_email":"tech@indq.in","_firstName":"Team","_lastName":"INDQ","globalRole":"global:owner","authenticationMethod":"email"}}
+{"__type":"$$EventMessageConfirm","confirm":"e4a2b34a-5a12-4310-8305-fd9d474a35d5","ts":"2025-06-25T11:31:21.751+00:00","source":{"id":"0","name":"eventBus"}}
