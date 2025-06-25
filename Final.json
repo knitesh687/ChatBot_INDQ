@@ -1,0 +1,455 @@
+{
+  "name": "Final",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "I'm here to help you explore our MedTech product design services. Whether you're looking to innovate in healthcare, need design expertise, or want to discuss partnerships, I'm ready to assist.",
+        "options": {
+          "subtitle": "We're here transforming healthcare ideas into innovative products. Ready to shape possibilities in MedTech together?",
+          "title": "INDQ Studio Assistant (Prototype🤖🔧)"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -860,
+        180
+      ],
+      "id": "a05691d3-8eaf-4e3f-a91d-3bc3aa5fab0b",
+      "name": "When chat message received",
+      "webhookId": "69c9ffd9-a03b-4aa5-84b7-80688c58fc83"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "=# INDQ Company Knowledge Base Response System\n\n## PRIMARY INSTRUCTION:\nYou are an INDQ company representative. Your responses must be based 90% on the INDQ KNOWLEDGE BASE below and only 10% on general knowledge for basic reasoning and language structure.\n\n## RESPONSE PRIORITY:\n1. **FIRST (90%)**: Always check INDQ knowledge base or embedded project context\n2. **SECOND (10%)**: Use general knowledge only for grammar, logical flow, or connecting retrieved facts\n\n---\n\n## INDQ KNOWLEDGE BASE:\n\n### COMPANY OVERVIEW:\n- **Name:** INDQ (Innovation-Design-Quotient), also known as INDQ Studio\n- **Founded:** March 2018\n- **Type:** Privately held\n- **Headquarters:** Visakhapatnam, Andhra Pradesh, India\n- **Additional Locations:** Ahmedabad, Hyderabad, Bangalore\n- **Size:** 11–50 employees\n- **Certification:** ISO 13485 (Medical device quality management)\n\n### MISSION & SPECIALTIES:\nINDQ is a med-tech and industrial product design studio focused on:\n- Product Design & R&D\n- Healthcare/MedTech Devices (wearables, diagnostic tools, assistive tech)\n- Embedded Systems, AI/ML, and SaaS integrations\n\n**Company Tagline:**  \n\"Every breakthrough begins with a bold idea. At INDQ, we specialize in taking your MedTech vision from hand-drawn sketches to fully functional prototypes...\"\n\n### LEADERSHIP:\n- **Krishna Sai Inkoolu** – Director & CEO  \n- **Vishwa Anuj** – CTO  \n- Experts in embedded systems, product design, machine learning, and industrial engineering\n\n---\n\n### PROJECTS (STRUCTURED FORMAT):\nEach INDQ project in our database includes:\n- **Project Name**\n- **Description**\n- **Category** (one of the following):\n  - Medical Equipment\n  - Consumer Healthcare\n  - Therapeutic Devices\n  - Preliminary Screening\n  - Diagnostic Devices\n  - Monitoring Devices\n\n**Example Format:**\nProject Name: Olemus  \nDescription: A point of care device to detect a wide range of biological components with the highest accuracy in less than a minute  \nCategory: Diagnostic Devices\n\n> Always match user questions to relevant project names, descriptions, or categories. If relevant context exists, reference it using INDQ’s natural voice.\n\n---\n\n### FLAGSHIP PRODUCT – DENTOBOT:\nA proprietary platform for patient-specific orthodontic appliances:\n- Custom braces using CBCT scans or physical impressions\n- Rapid delivery within 24 hours\n- ~86% tooth position accuracy (up to 96% for incisors)\n- Treatment time reduced by ~⅓\n- 85% more cost-effective than traditional systems\n- Includes custom arch-wires and jigs\n\n---\n\n### SERVICES & CAPABILITIES:\n- Full-cycle product development (concept → prototyping → pre-compliance testing → launch)\n- Embedded systems and hardware development\n- AI-powered health monitoring\n- 3D modeling, rapid prototyping, UI/UX for MedTech interfaces\n\n---\n\n### PROJECTS COMPLETED:\n- 48+ projects delivered  \n- Visit to explore: www.indq.in/work\n\n---\n\n### OFFICIAL LINKS:\n- Projects: www.indq.in/work\n- Blogs: www.indq.in/main_blog\n- Services: www.indq.in/services\n- About: www.indq.in/about\n- Contact: www.indq.in/Contact\n- Website: www.indq.in\n- LinkedIn: https://www.linkedin.com/company/indq/\n- Instagram: https://www.instagram.com/indq_studio/\n- Facebook: https://www.facebook.com/indq.in/\n\n---\n\n## CONTEXT FROM VECTOR DATABASE:\n{{vectorSearchResult}}\n\n---\n\n## RESPONSE RULES:\n\n### MUST DO:\n- Use INDQ’s voice:\n  - “At INDQ, we…”\n  - “Our team has developed…”\n  - “We specialize in…”\n- Prioritize project names, descriptions, and categories if matched\n- If user asks for category info (e.g. \"diagnostic devices\"), mention relevant projects\n- Link to project page if more info is requested\n\n### MUST NOT:\n- Invent project names or descriptions\n- Provide generic MedTech answers if INDQ data exists\n- Say “based on documents” or “according to training”\n- Ignore vector search results that match user's topic\n\n---\n\n## BLOG TOPICS:\n22+ articles covering innovation in diagnostics, biomedical robotics, neurotech, AI, and wearable healthcare\n\n---\n\n## RESPONSE TEMPLATE:\nAt INDQ, we [insert project/service/capability that matches the user’s query].\n\n[Expand using category or blog context, only if relevant.]\n\nTo learn more about our work, visit: www.indq.in/work\n\n---\n\n## VERIFICATION CHECKLIST:\n- [ ] INDQ knowledge base or vector context used first\n- [ ] Relevant project(s), categories, or blogs mentioned if applicable\n- [ ] Company voice and tone maintained\n- [ ] Factual accuracy ensured (no hallucination)\n- [ ] Link(s) included if appropriate\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        -380,
+        -160
+      ],
+      "id": "19dc55fc-42a8-4b8f-ab5e-1d363dd3d45d",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        -340,
+        180
+      ],
+      "id": "54ea2203-d541-4fb7-af3a-599aba635727",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "arecZITHpnT71BGl",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        -140,
+        440
+      ],
+      "id": "8376e74f-174e-461f-a707-4e35d2a06121",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "smwffJ4mgO3WpuD9",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolName": "Chat_Bot",
+        "toolDescription": "Search the INDQ Studio knowledge base to answer user questions about MedTech product design, healthcare innovation, company services, and capabilities. Respond naturally as the INDQ Studio AI Assistant, a friendly MedTech design expert.",
+        "tableName": {
+          "__rl": true,
+          "value": "documents",
+          "mode": "list",
+          "cachedResultName": "documents"
+        },
+        "includeDocumentMetadata": false,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1.2,
+      "position": [
+        240,
+        -20
+      ],
+      "id": "a2844a7c-85af-462c-89e8-cc37ffad93fc",
+      "name": "Supabase Vector Store",
+      "credentials": {
+        "supabaseApi": {
+          "id": "B7Vy1I341nbBJONo",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.embeddingsCohere",
+      "typeVersion": 1,
+      "position": [
+        380,
+        280
+      ],
+      "id": "345c876c-e151-41bf-88b0-cd739b916669",
+      "name": "Embeddings Cohere1",
+      "credentials": {
+        "cohereApi": {
+          "id": "0mbcaHwCoVyv5taZ",
+          "name": "CohereApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "https://docs.google.com/document/d/1vtQ5KpncinW-LlJZLmW1XT86ZNa37GwrFPiBubksIB0/edit?usp=sharing",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1180,
+        -40
+      ],
+      "id": "28b30ee5-e5cb-4eca-82da-dc5f23107982",
+      "name": "Google Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0vGTnjE3h0bvsjPa",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "tableName": {
+          "__rl": true,
+          "value": "documents",
+          "mode": "list",
+          "cachedResultName": "documents"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1.2,
+      "position": [
+        1620,
+        -360
+      ],
+      "id": "e0274a50-62a5-47fd-bd7f-cce9a6fa5bec",
+      "name": "Supabase Vector Store1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "B7Vy1I341nbBJONo",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.embeddingsCohere",
+      "typeVersion": 1,
+      "position": [
+        1640,
+        -40
+      ],
+      "id": "3a590e06-5b5a-41a9-94ce-be5d69e36a0c",
+      "name": "Embeddings Cohere",
+      "credentials": {
+        "cohereApi": {
+          "id": "0mbcaHwCoVyv5taZ",
+          "name": "CohereApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        1780,
+        180
+      ],
+      "id": "ce41473a-b1ea-4ec2-81ac-3321a8fabbb5",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        340
+      ],
+      "id": "5283bac1-77da-4067-8cec-cdd410e79645",
+      "name": "Recursive Character Text Splitter"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "documentURL": "https://docs.google.com/document/d/1vtQ5KpncinW-LlJZLmW1XT86ZNa37GwrFPiBubksIB0/edit?tab=t.0"
+      },
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        940,
+        -40
+      ],
+      "id": "3eadde5e-f598-4e4b-b938-5c7d2dce7a21",
+      "name": "Google Docs",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "h5H19N8vAdqilJmd",
+          "name": "Google Docs account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## 🔹 Trigger\n\n### 🟢 When chat message received\n### Initiates the workflow whenever a new chat message is received from the user.\n\n",
+        "height": 340,
+        "width": 460,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1060,
+        0
+      ],
+      "id": "6bde2e6a-b448-4910-88f3-724882c29bbd",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## 🔹 Chat Agent Setup\n## 🤖 AI Agent\n### Main logic unit that processes user messages using a defined chat model and memory. It is enhanced with tools like vector search.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n## 🔴 Groq Chat Model\n### Provides fast and efficient responses using Groq’s LLMs. Connected as the model for the AI Agent.\n\n\n\n\n\n\n\n\n\n\n\n## 🔵 Postgres Chat Memory\n### Stores and retrieves conversation history to maintain context across chats.",
+        "height": 920,
+        "width": 620,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        -340
+      ],
+      "id": "f55bad96-fc6a-4d16-8cf1-8e975685a4af",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## 🔹 Tool: Vector Search (for Chat Memory)\n\n## 🟣 Supabase Vector Store\n### Connected as a tool to the AI Agent for enhanced memory and document querying. It retrieves relevant chunks using vector similarity search.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n## ⚪ Embeddings Cohere1\n### Used to embed the incoming queries from the AI Agent into vector form for similarity search in Supabase.       ",
+        "height": 660,
+        "width": 680
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        100,
+        -240
+      ],
+      "id": "c496a963-8c8e-46e8-b37a-20165fc965ba",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## 🔹 Data Loader (from Google Docs)\n\n## 🟢 Supabase Vector Store1\n### Stores the document embeddings for searchability. Works with embedding and document loader components.\n\n\n\n\n\n\n\n\n\n\n\n\n\n## ⚪ Embeddings Cohere\n### Used to convert Google Doc content into embeddings before pushing into the Supabase Vector Store1.\n\n\n\n\n\n\n\n\n\n\n\n\n\n## 🟣 Default Data Loader\n### Extracts and prepares the content of the Google Doc for processing.\n\n\n",
+        "height": 860,
+        "width": 700,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1460,
+        -560
+      ],
+      "id": "3eadbca3-f9a4-498b-92ba-f31c109c6303",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## 🔹 Data Loader (from Google Docs)\n\n## 📄 Google Docs + Google Drive\n### Used to fetch the document content directly from a linked Google Drive file.",
+        "height": 340,
+        "width": 580,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        820,
+        -220
+      ],
+      "id": "07ef36bb-8f2a-47f7-b7be-74c16d0b7a92",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n## ⏸️ Recursive Character Text Splitter\n\n### Splits long document content into smaller chunks, ensuring compatibility with token limits and effective vector embedding.\n",
+        "height": 440,
+        "width": 480,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        300
+      ],
+      "id": "78a486c4-b4b8-485c-b59c-7430b4d4dcf7",
+      "name": "Sticky Note5"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase Vector Store": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Cohere1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive": {
+      "main": [
+        [
+          {
+            "node": "Supabase Vector Store1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Cohere": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Supabase Vector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Supabase Vector Store1",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Docs": {
+      "main": [
+        [
+          {
+            "node": "Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "fc455d93-7e54-4598-8b78-c352d6b4ae46",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "083e0385c15a56a09ce5e53073627f6597522e3b8cd798da97a24a03edfbfcef"
+  },
+  "id": "fft9V9jYz7pOWek9",
+  "tags": []
+}
